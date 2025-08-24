@@ -1,4 +1,4 @@
-import { describe, beforeAll, test, expect, beforeAll } from "vitest";
+import { describe, beforeEach, test, expect, beforeAll } from "vitest";
 import { BinaryNode } from "./binary_tree";
 
 describe('BinaryNode test', () => {
@@ -6,7 +6,7 @@ describe('BinaryNode test', () => {
     let C;
     let A;
     
-    beforeAll(() => {
+    beforeEach(() => {
         B = new BinaryNode({item: 2});
         C = new BinaryNode({item: 3});
         A = new BinaryNode({left: B, right: C, item: 1});
@@ -25,9 +25,15 @@ describe('BinaryNode test', () => {
 
     test('successor test', () => {
         expect(B.successor()).toBe(A);
-    })
+    });
 
     test('predecessor test', () => {
         expect(C.predecessor()).toBe(A);
-    })
+    });
+
+    test('subtreeInsertBefore test', () => {
+        const D = new BinaryNode({item:4, parent: B})
+        A.subtreeInsertBefore(D);
+        expect(A.predecessor()).toBe(D);
+    });
 })

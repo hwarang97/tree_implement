@@ -59,6 +59,16 @@ class BinaryNode {
         }
         return parent;
     }
+
+    subtreeInsertBefore(B) {
+        if (this.left) {
+            const lastNode = this.left.subtreeLast();
+            lastNode.right = B;
+            return; 
+        }
+
+        this.left = B;
+    }
 }
 
 export { BinaryNode };
