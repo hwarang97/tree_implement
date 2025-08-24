@@ -101,7 +101,7 @@ describe('BinaryNode test', () => {
     });
 
     test('subtreeDelete test5', () => {
-        // 노드 A 삭제시, 전임자와 아이템을 바꾸고 연결이 끊기는지 확인
+        // 노드 B 삭제시, 전임자와 아이템을 바꾸고 연결이 끊기는지 확인
         expect(B.subtreeDelete().item).toBe(2);
         expect(A.left).toBe(null);
     });
