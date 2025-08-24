@@ -26,4 +26,8 @@ describe('BinaryNode test', () => {
     test('successor test', () => {
         expect(B.successor()).toBe(A);
     })
+
+    test('predecessor test', () => {
+        expect(C.predecessor()).toBe(A);
+    })
 })
