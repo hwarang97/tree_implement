@@ -36,4 +36,16 @@ describe('BinaryNode test', () => {
         A.subtreeInsertBefore(D);
         expect(A.predecessor()).toBe(D);
     });
+
+    test('subtreeInsertAfter test', () => {
+        // 오른쪽 자식 노드가 있을 경우 
+        const F = new BinaryNode({item:6, parent: C})
+        A.subtreeInsertAfter(F);
+        expect(C.left).toBe(F);
+
+        // 오른쪽 자식 노드가 없을 경우
+        const G = new BinaryNode({item:7, parent: C});
+        C.subtreeInsertAfter(G);
+        expect(C.right).toBe(G);
+    });
 })

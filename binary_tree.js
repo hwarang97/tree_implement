@@ -69,6 +69,16 @@ class BinaryNode {
 
         this.left = B;
     }
+
+    subtreeInsertAfter(B) {
+        if (this.right) {
+            const firstNode = this.right.subtreeFirst();
+            firstNode.left = B;
+            return;
+        }
+
+        this.right = B;
+    }
 }
 
 export { BinaryNode };
