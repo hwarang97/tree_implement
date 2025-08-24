@@ -149,6 +149,14 @@ class BinaryTree {
         this.root = make_tree(A, start, end);
         this.size = A.length;
     }
+
+    treeIter() {
+        let node = this.root.subtreeFirst();
+        while (node) {
+            yield node;
+            node = node.predecessor();
+        }
+    }
 }
 
 export { BinaryNode, BinaryTree };
