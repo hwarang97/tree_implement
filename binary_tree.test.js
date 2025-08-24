@@ -14,6 +14,9 @@ describe('BinaryNode test', () => {
 
     test('subtreeFirst test', () => {
         expect(A.subtreeFirst()).toBe(B);
-    })
-})
+    });
 
+    test('subtreeLast test', () => {
+        expect(A.subtreeLast()).toBe(C);
+    });
+})

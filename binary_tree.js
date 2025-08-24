@@ -23,6 +23,14 @@ class BinaryNode {
 
         return this;
     }
+
+    subtreeLast() {
+        if (this.right) {
+            return this.right.subtreeLast();
+        }
+
+        return this;
+    }
 }
 
 export { BinaryNode };
