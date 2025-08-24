@@ -107,4 +107,48 @@ class BinaryNode {
     }
 }
 
-export { BinaryNode };
+class BinaryTree {
+    constructor(nodeType) {
+        this.root = null;
+        this.size = 0;
+        this.nodeType = nodeType;
+    }
+
+    __length__() {
+        return this.size;
+    }
+
+    *__iter__() {
+        for (const node of this.root.subtreeIter()) {
+            yield node.item;
+        }
+    }
+
+    build(A) {
+        const nodeType = this.nodeType;
+
+        function make_tree(A, i, j) {
+            const c = Math.floor((i+j)/2);
+            const root = new nodeType({item: A[c]});
+    
+            if (i < c) {
+                root.left = make_tree(A, i, c-1); 
+                root.left.parent = root;
+            }
+    
+            if (c < j) {
+                root.right = make_tree(A, c+1, j);
+                root.right.parent = root;
+            }
+
+            return root;
+        } 
+
+        const start = 0
+        const end = A.length - 1;
+        this.root = make_tree(A, start, end);
+        this.size = A.length;
+    }
+}
+
+export { BinaryNode, BinaryTree };

@@ -1,5 +1,5 @@
 import { describe, beforeEach, test, expect, beforeAll } from "vitest";
-import { BinaryNode } from "./binary_tree";
+import { BinaryNode, BinaryTree } from "./binary_tree";
 
 describe('BinaryNode test', () => {
     let B;
@@ -105,4 +105,47 @@ describe('BinaryNode test', () => {
         expect(B.subtreeDelete().item).toBe(2);
         expect(A.left).toBe(null);
     });
+});
+
+describe('BinaryTree test', () => {
+    // let B;
+    // let C;
+    // let A;
+    // let binaryTree;
+
+    // beforeEach(() => {
+    //     B = new BinaryNode({item: 2});
+    //     C = new BinaryNode({item: 3});
+    //     A = new BinaryNode({left: B, right: C, item: 1});
+        
+    //     B.parent = A;
+    //     C.parent = A;
+    // });
+
+    test('binaryTree iter test', () => {
+        const binaryTree = new BinaryTree(BinaryNode);
+        const inputs = [1,2,3,4,5,6];
+
+        binaryTree.build(inputs);
+
+        expect(binaryTree.root.item).toBe(3);
+        
+        expect(binaryTree.root.left.item).toBe(1);
+        expect(binaryTree.root.left.parent.item).toBe(3);
+        
+        expect(binaryTree.root.left.right.item).toBe(2);
+        expect(binaryTree.root.left.right.parent.item).toBe(1);
+        
+        expect(binaryTree.root.right.item).toBe(5);
+        expect(binaryTree.root.right.parent.item).toBe(3);
+
+
+        expect(binaryTree.root.right.left.item).toBe(4);
+        expect(binaryTree.root.right.left.parent.item).toBe(5);
+
+        expect(binaryTree.root.right.right.item).toBe(6);
+        expect(binaryTree.root.right.right.parent.item).toBe(5);
+
+        expect(binaryTree.size).toBe(6);
+    })
 })
