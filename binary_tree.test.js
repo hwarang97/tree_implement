@@ -32,21 +32,31 @@ describe('BinaryNode test', () => {
     });
 
     test('subtreeInsertBefore test', () => {
-        const D = new BinaryNode({item:4, parent: B});
-        A.subtreeInsertBefore(D);
-        expect(A.predecessor()).toBe(D);
+        // 왼쪽 자식 노드가 있는 경우
+        const E = new BinaryNode({item:5});
+        A.subtreeInsertBefore(E);
+        expect(B.right).toBe(E);
+        expect(E.parent).toBe(B);
+
+        // 왼쪽 자식 노드가 없는 경우
+        const D = new BinaryNode({item:4});
+        B.subtreeInsertBefore(D);
+        expect(B.left).toBe(D);
+        expect(D.parent).toBe(B);
     });
 
-    test('subtreeInsertAfter test', () => {
+    test('subtreeInsertAfter test1', () => {
         // 오른쪽 자식 노드가 있을 경우 
-        const F = new BinaryNode({item:6, parent: C})
+        const F = new BinaryNode({item:6})
         A.subtreeInsertAfter(F);
         expect(C.left).toBe(F);
+        expect(F.parent).toBe(C);
 
         // 오른쪽 자식 노드가 없을 경우
-        const G = new BinaryNode({item:7, parent: C});
+        const G = new BinaryNode({item:7});
         C.subtreeInsertAfter(G);
         expect(C.right).toBe(G);
+        expect(G.parent).toBe(C);
     });
 
     test('subtreeDelete test1', () => {

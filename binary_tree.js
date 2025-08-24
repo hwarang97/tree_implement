@@ -64,20 +64,24 @@ class BinaryNode {
         if (this.left) {
             const lastNode = this.left.subtreeLast();
             lastNode.right = B;
+            B.parent = lastNode;
             return; 
         }
 
         this.left = B;
+        B.parent = this;
     }
 
     subtreeInsertAfter(B) {
         if (this.right) {
             const firstNode = this.right.subtreeFirst();
             firstNode.left = B;
+            B.parent = firstNode;
             return;
         }
 
         this.right = B;
+        B.parent = this;
     }
 
     subtreeDelete() {
