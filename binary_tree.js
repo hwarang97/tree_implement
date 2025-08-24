@@ -15,4 +15,14 @@ class BinaryNode {
             yield* this.right.subtreeIter();
         }
     }
+
+    subtreeFirst() {
+        if (this.left) {
+            return this.left.subtreeFirst();
+        }
+
+        return this;
+    }
 }
+
+export { BinaryNode };
