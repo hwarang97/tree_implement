@@ -85,36 +85,25 @@ class BinaryNode {
     }
 
     subtreeDelete() {
-        if (this.left) {
-            const predecessor = this.left.subtreeLast();
-            [this.item, predecessor.item] = [predecessor.item, this.item];
-
-            if (predecessor.left || predecessor.right) {
-                return predecessor.subtreeDelete();
+        if (this.left || this.right) {
+            let B;
+            if (this.left) {
+                B = this.left.subtreeLast();   
+            } else {
+                B = this.right.subtreeFirst();
             }
-
-            predecessor.parent.left = null;
-            return predecessor;
+            [this.item, B.item] = [B.item, this.item];
+            return B.subtreeDelete();
         }
 
-        if (this.right) {
-            const successor = this.right.subtreeFirst();
-            [this.item, successor.item] = [successor.item, this.item];
-
-            if (successor.left || successor.right) {
-                return successor.subtreeDelete();
+        if (this.parent) {
+            if (this.parent.left == this) {
+                this.parent.left = null;
+            } else {
+                this.parent.right = null;
             }
-
-            successor.parent.right = null;
-            return successor;
         }
-
-        if (this.parent.left == this) {
-            this.parent.left = null;
-        } else {
-            this.parent.right = null;
-        }
-        return this
+        return this;
     }
 }
 
