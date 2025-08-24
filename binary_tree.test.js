@@ -10,6 +10,9 @@ describe('BinaryNode test', () => {
         B = new BinaryNode({item: 2});
         C = new BinaryNode({item: 3});
         A = new BinaryNode({left: B, right: C, item: 1});
+        
+        B.parent = A;
+        C.parent = A;
     });
 
     test('subtreeFirst test', () => {
@@ -19,4 +22,8 @@ describe('BinaryNode test', () => {
     test('subtreeLast test', () => {
         expect(A.subtreeLast()).toBe(C);
     });
+
+    test('successor test', () => {
+        expect(B.successor()).toBe(A);
+    })
 })

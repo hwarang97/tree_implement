@@ -31,6 +31,20 @@ class BinaryNode {
 
         return this;
     }
+
+    successor() {
+        if (this.right) {
+            return this.right.subtreeFirst();
+        }
+
+        let current = this;
+        let parent = this.parent;
+        while (parent && parent.right == current) {
+            current = parent;
+            parent = parent.parent;
+        }
+        return parent;
+    }
 }
 
 export { BinaryNode };
