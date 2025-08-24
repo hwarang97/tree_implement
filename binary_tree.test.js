@@ -32,7 +32,7 @@ describe('BinaryNode test', () => {
     });
 
     test('subtreeInsertBefore test', () => {
-        const D = new BinaryNode({item:4, parent: B})
+        const D = new BinaryNode({item:4, parent: B});
         A.subtreeInsertBefore(D);
         expect(A.predecessor()).toBe(D);
     });
@@ -47,5 +47,52 @@ describe('BinaryNode test', () => {
         const G = new BinaryNode({item:7, parent: C});
         C.subtreeInsertAfter(G);
         expect(C.right).toBe(G);
+    });
+
+    test('subtreeDelete test1', () => {
+        // 노드 A 삭제시, 전임자와 아이템을 바꾸고 연결이 끊기는지 확인
+        expect(A.subtreeDelete().item).toBe(1);
+        expect(A.left).toBe(null);
+        expect(A.item).toBe(2);
+    });
+
+    test('subtreeDelete test2', () => {
+        // 노드 A 삭제시, 전임자와 아이템을 바꾸고 연결이 끊기는지 확인
+        const D = new BinaryNode({item:4, parent: B});
+        B.left = D;
+
+        expect(A.subtreeDelete().item).toBe(1);
+        expect(B.left).toBe(null);
+        expect(A.item).toBe(2);
+        expect(B.item).toBe(4);
+    });
+
+    test('subtreeDelete test3', () => {
+        // 노드 C 삭제시, 후임자와 아이템을 바꾸고 연결이 끊기는지 확인
+        const G = new BinaryNode({item:7, parent: C});
+        C.right = G;
+
+        expect(C.subtreeDelete().item).toBe(3);
+        expect(C.right).toBe(null);
+    });
+
+    test('subtreeDelete test4', () => {
+        // 노드 C 삭제시, 후임자와 아이템을 바꾸고 연결이 끊기는지 확인
+        const G = new BinaryNode({item:7, parent: C});
+        C.right = G;
+
+        const H = new BinaryNode({item:13, parent: G});
+        G.right = H;
+
+        expect(C.subtreeDelete().item).toBe(3);
+        expect(C.item).toBe(7);
+        expect(G.item).toBe(13);
+        expect(G.right).toBe(null);
+    });
+
+    test('subtreeDelete test5', () => {
+        // 노드 A 삭제시, 전임자와 아이템을 바꾸고 연결이 끊기는지 확인
+        expect(B.subtreeDelete().item).toBe(2);
+        expect(A.left).toBe(null);
     });
 })

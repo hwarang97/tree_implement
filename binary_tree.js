@@ -79,6 +79,39 @@ class BinaryNode {
 
         this.right = B;
     }
+
+    subtreeDelete() {
+        if (this.left) {
+            const predecessor = this.left.subtreeLast();
+            [this.item, predecessor.item] = [predecessor.item, this.item];
+
+            if (predecessor.left || predecessor.right) {
+                return predecessor.subtreeDelete();
+            }
+
+            predecessor.parent.left = null;
+            return predecessor;
+        }
+
+        if (this.right) {
+            const successor = this.right.subtreeFirst();
+            [this.item, successor.item] = [successor.item, this.item];
+
+            if (successor.left || successor.right) {
+                return successor.subtreeDelete();
+            }
+
+            successor.parent.right = null;
+            return successor;
+        }
+
+        if (this.parent.left == this) {
+            this.parent.left = null;
+        } else {
+            this.parent.right = null;
+        }
+        return this
+    }
 }
 
 export { BinaryNode };
