@@ -150,7 +150,7 @@ class BinaryTree {
         this.size = A.length;
     }
 
-    treeIter() {
+    *treeIter() {
         let node = this.root.subtreeFirst();
         while (node) {
             yield node;
