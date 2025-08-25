@@ -42,4 +42,23 @@ class BinarySearchNode extends BinaryNode {
             return this;
         }
     }
+
+    subtreeFindPrev(key) {
+        if (key <= this.key) {
+            if (this.left) {
+                return this.left.subtreeFindPrev(key);
+            }
+            return null;
+        } else {
+            if (this.right) {
+                const B = this.right.subtreeFindPrev(key);
+                if (B) {
+                    return B;
+                }
+            }
+            return this;
+        }
+    }
 }
+
+export { BinarySearchNode };

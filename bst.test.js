@@ -44,4 +44,18 @@ describe('test for BinarySearchNode', () => {
         expect(a.subtreeFindNext(6).key).toBe(7);
         expect(a.subtreeFindNext(10).key).toBe(11);
     });
+
+    test('test fo subtreeFindPrev', () => {
+        // 사이드쪽 확인
+        expect(a.subtreeFindPrev(0)).toBe(null);
+        expect(a.subtreeFindPrev(16).key).toBe(15);
+
+        // 깊이 1인것 확인
+        expect(a.subtreeFindPrev(6).key).toBe(5);
+        expect(a.subtreeFindPrev(14).key).toBe(13);
+        
+        // 깊이 2중에서 내부쪽에 있는것 확인
+        expect(a.subtreeFindPrev(8).key).toBe(7);
+        expect(a.subtreeFindPrev(12).key).toBe(11);
+    });
 })
