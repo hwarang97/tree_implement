@@ -1,11 +1,10 @@
-import { describe, test, expect, beforeAll } from 'vitest';
+import { describe, test, expect, beforeEach } from 'vitest';
 import { BinarySearchNode } from './bst';
-import { beforeEach } from 'node:test';
 
 describe('test for BinarySearchNode', () => {
     let a,b,c,d,e,f,g;
     
-    beforeAll(() => {
+    beforeEach(() => {
         a = new BinarySearchNode({key: 8});
         b = new BinarySearchNode({parent: a, key: 5});
         c = new BinarySearchNode({parent: a, key: 13});
@@ -31,4 +30,18 @@ describe('test for BinarySearchNode', () => {
         expect(a.subtreeFind(6)).toBe(null);
         expect(a.subtreeFind(12)).toBe(null);
     }); 
+
+    test('test fo subtreeFindNext', () => {
+        // 사이드쪽 확인
+        expect(a.subtreeFindNext(0).key).toBe(1);
+        expect(a.subtreeFindNext(16)).toBe(null);
+
+        // 깊이 1인것 확인
+        expect(a.subtreeFindNext(3).key).toBe(5);
+        expect(a.subtreeFindNext(12).key).toBe(13);
+        
+        // 깊이 2중에서 내부쪽에 있는것 확인
+        expect(a.subtreeFindNext(6).key).toBe(7);
+        expect(a.subtreeFindNext(10).key).toBe(11);
+    });
 })

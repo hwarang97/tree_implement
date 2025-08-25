@@ -1,4 +1,4 @@
-import { BinaryNode } from './binary_tree'
+import { BinaryNode } from './binary_tree.js'
 
 class BinarySearchNode extends BinaryNode {
     constructor({parent=null, left=null, right=null, item=null, key} = {}) {
@@ -11,19 +11,35 @@ class BinarySearchNode extends BinaryNode {
             if (this.left) {
                 return this.left.subtreeFind(key);
             }
+
         } else if (key > this.key) {
             if (this.right) {
                 return this.right.subtreeFind(key);
-            } 
+            }
+
         } else {
             return this;
         }
 
         return null;
     }
-
-
     
-}
+    subtreeFindNext(key) {
+        if (key >= this.key) {
+            if (this.right) {
+                return this.right.subtreeFindNext(key);
+            } else {
+                return null;
+            }
 
-export { BinarySearchNode };
+        } else {
+            if (this.left) {
+                const B = this.left.subtreeFindNext(key);
+                if (B) {
+                    return B;
+                }
+            }
+            return this;
+        }
+    }
+}
