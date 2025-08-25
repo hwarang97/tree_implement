@@ -45,7 +45,7 @@ describe('test for BinarySearchNode', () => {
         expect(a.subtreeFindNext(10).key).toBe(11);
     });
 
-    test('test fo subtreeFindPrev', () => {
+    test('test for subtreeFindPrev', () => {
         // 사이드쪽 확인
         expect(a.subtreeFindPrev(0)).toBe(null);
         expect(a.subtreeFindPrev(16).key).toBe(15);
@@ -57,5 +57,40 @@ describe('test for BinarySearchNode', () => {
         // 깊이 2중에서 내부쪽에 있는것 확인
         expect(a.subtreeFindPrev(8).key).toBe(7);
         expect(a.subtreeFindPrev(12).key).toBe(11);
+    });
+
+    test('test for subtreeInsert', () => {
+        // 리프 노드쪽에 의도대로 저장되는지 확인
+        const node0 = new BinarySearchNode({key:0}) 
+        a.subtreeInsert(node0);
+        expect(d.left).toBe(node0);
+
+        const node2 = new BinarySearchNode({key:2}) 
+        a.subtreeInsert(node2);
+        expect(d.right).toBe(node2);
+
+        const node6 = new BinarySearchNode({key:6}) 
+        a.subtreeInsert(node6);
+        expect(e.left).toBe(node6);
+
+        const node7_2 = new BinarySearchNode({key:7.2}) 
+        a.subtreeInsert(node7_2);
+        expect(e.right).toBe(node7_2);
+
+        const node10 = new BinarySearchNode({key:10}) 
+        a.subtreeInsert(node10);
+        expect(f.left).toBe(node10);
+
+        const node12 = new BinarySearchNode({key:12}) 
+        a.subtreeInsert(node12);
+        expect(f.right).toBe(node12);
+
+        const node14 = new BinarySearchNode({key:14}) 
+        a.subtreeInsert(node14);
+        expect(g.left).toBe(node14);
+
+        const node16 = new BinarySearchNode({key:16}) 
+        a.subtreeInsert(node16);
+        expect(g.right).toBe(node16);
     });
 })

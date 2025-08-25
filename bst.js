@@ -59,6 +59,30 @@ class BinarySearchNode extends BinaryNode {
             return this;
         }
     }
+
+    subtreeInsert(B) {
+        if (B.key < this.key) {
+            if (this.left) {
+                this.left.subtreeInsert(B);
+            }
+            else {
+                this.subtreeInsertBefore(B);
+            }
+        }
+
+        else if (B.key > this.key) {
+            if (this.right) {
+                this.right.subtreeInsert(B);
+            }
+            else {
+                this.subtreeInsertAfter(B);
+            }
+        }
+
+        else {
+            this.item = B.item;
+        }
+    }
 }
 
 export { BinarySearchNode };
